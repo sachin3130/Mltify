@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700');
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+body {
+    width: 100%;
+    height: 100vh;
+    background-color: #000000;
+    font-family: 'Markazi Text';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #fff;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+@media only screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+}
+header .menu_side, .song_side {
+    position: relative;
+    width: 15%;
+    height: 90%;
+    margin: 5px;
+    /* background-color: #111727; */
+    /* box-shadow: 5px 0px 2px #0901f1; */
+}
+header .menu_side {
+    /* width: 25%; */
+    background: #121212;
+    border-radius: 10px;
+}
+header .song_side {
+    width: 83%;
+    background: #121212;
+    border-radius: 10px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+header .song_side::-webkit-scrollbar{
+    display: none;
+}
+
+/* header .menu_side h1{
+    font-size: 20px;
+    margin: 15px 0px 0px 20px;
+    font-weight: 500;
+}
+header .menu_side h1 img{
+    width: 50px;
+    
+    padding: -5px;
+} */
+header .menu_side h1 img {
+    width: 40px;
+    /* padding-top: -5px; */
+    display: inline-block;
+    vertical-align: middle; /* Align the image vertically in the middle of the text */
+    margin-right: 10px; /* Add some spacing between the image and the text */
+}
+
+header .menu_side h1 {
+    font-size: 25px;
+    /* font-style: bold; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+    color: #fff;
+    display: inline-block; /* Ensure the heading is treated as a block element */
+    margin-top: 10px; /* Remove default margin for the heading */
+}
+/* header .menu_side .nav{
+    margin: 40px 0px 0px 20px;
+}
+header .menu_side .nav h4{
+    font-size: 14px;
+    font-weight: 400;
+    padding-bottom: 10px;
+    color: #818181;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: .3s linear;
+}
+header .menu_side .nav h4:hover{
+    color: #fff;
+}
+header .menu_side .nav h4 .bi{
+    margin-right: 20px;
+    position: relative;
+}
+
+
+header .menu_side .nav .active{
+    color: white;
+} */
+
+header .menu_side .nav{
+    margin: 40px 0px 0px 20px;
+}
+header .menu_side .nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header .menu_side .nav li {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+header .menu_side .nav li:hover{
+    color: #fff;
+}
+header .menu_side .nav li.active a{
+    color: #fff;
+}
+header .menu_side .nav li.active .bi{
+    color: #fff;
+}
+
+header .menu_side .nav a {
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-bottom: 10px;
+    color: #B2B2B2;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: .3s linear;
+    text-decoration: none;
+    transition: color 0.3s; 
+}
+
+header .menu_side .nav a:hover {
+    color: #fff; 
+    text-decoration: underline;
+}
+
+header .menu_side .nav li:hover .bi{
+    color: #fff;
+}
+
+header .menu_side .bi {
+    margin-right: 20px; 
+    position: relative;
+    margin-top: -8px;
+    color: #B2B2B2;
+
+}
+
+header .menu_side .playlists {
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+}
+header .menu_side .playlists li{
+    height: 60px;
+    color: white;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+header .menu_side .playlists h1{
+    margin-left: 10px;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+header .menu_side .playlists h1 .bi{
+    font-size: 15px;
+}
+header .menu_side .playlists li:hover{
+    background: #232323;
+    cursor: pointer;
+}
+header .menu_side .playlists li img{
+    width: 40px;
+    height: 40px;
+    margin-left: 5px;
+}
+header .menu_side .playlists li a{
+    margin-left: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    line-height: 1.5;
+    /* max-width: 90%; */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+    white-space: nowrap; 
+}
+
+header .master_play {
+    width: 100%;
+    height: 10%;
+    margin: 5px;
+    border-radius: 10px;
+    background: #121212;
+    display: flex;
+    align-items: center;
+}
+
+header .master_play .wave{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: flex-end;
+    margin-right: 10px;
+}
+header .master_play .wave .wave1{
+    width: 3px;
+    height: 10px;
+    margin-right: 3px;
+    border-radius: 10px 10px 0px 0px;
+    background: #127103;
+    animation: wave 0.5s linear infinite;
+}
+header .master_play .wave .wave1:nth-child(2){
+    height: 13px;
+    animation-delay: .4s;
+}
+header .master_play .wave .wave1:nth-child(3){
+    height: 8px;
+    animation-delay: .8s;
+}
+header .master_play .active2 .wave1{
+    animation: wave .5s linear infinite;
+}
+header .master_play .active2 .wave1:nth-child(2){
+    animation-delay: .4s;
+}
+header .master_play .active2 .wave1:nth-child(3){
+    animation-delay: .8s;
+}
+@keyframes wave {
+    0%{
+        height: 10px;
+    }
+    50%{
+        height: 15px;
+    }
+    100%{
+        height: 10px;
+    }
+}
+
+header .master_play img{
+    /* width: 35px; */
+    height: 35px;
+}
+header .master_play h5{
+    width: 130px;
+    font-size: 13px;
+    margin-left: 15px;
+    color: #fff;
+    line-height: 15px;
+}
+header .master_play h5 .subtitle{
+    font-size: 11px;
+    color: #fff;
+}
+header .master_play .icon{
+    font-size: 20px;
+    color: #fff;
+    margin: 0px 20px 0px 40px;
+}
+header .master_play .icon .bi{
+    cursor: pointer;
+    outline: none;
+}
+header .master_play .icon .bi:nth-child(2){
+    border: 1px solid rgba(194, 194, 216, 0.1);
+    border-radius: 50%;
+    padding: 1px 3px 0px 6px;
+    margin: 0px 5px;
+    transition: .3s linear;
+}
+header .master_play span {
+    color: #fff;
+    width: 32px;
+    font-size: 11px;
+    font-weight: 400;
+}
+header .master_play span #currentStart{
+    margin: 0px 0px 0px 20px;
+}
+header .master_play .bar {
+    position: relative;
+    width: 43%;
+    height: 2px;
+    background: rgb(105, 105, 170,.1);
+    margin: 0px 15px 0px 10px;
+}
+header .master_play .bar .bar2{
+    position: absolute;
+    background: red;
+    width: 0;
+    height: 100%;
+    top: 0;  
+}
+header .master_play .bar .dot{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: red;
+    border-radius: 50%;
+    left: 0%;
+    top: -1px;
+    transition: 1s linear;
+}
+header .master_play .bar .dot::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 1px solid red;
+    border-radius: 50%;
+    left: -6px;
+    top: -6px;
+    box-shadow: inset 0px 0px red;
+}
+header .master_play .bar input{
+    position: absolute;
+    width: 100%;
+    top: -6px;
+    left: 0;
+    cursor: pointer;
+    z-index: 999999999;
+    transition: 3s linear;
+    opacity: 0;
+}
+header .master_play .vol{
+    position: relative;
+    width: 100px;
+    height: 2px;
+    margin-left: 50px;
+    background: red;
+}
+header .master_play .vol .bi{
+    position: absolute;
+    color: white;
+    font-size: 25px;
+    top: -17px;
+    left: -30px;
+}
+header .master_play .vol input{
+    position: absolute;
+    width: 100%;
+    top: -10px;
+    left: 0;
+    cursor: pointer;
+    z-index: 999999999;
+    transition: 3s linear;
+    opacity: 0;
+}
+header .master_play .vol .vol_bar{
+    position: absolute;
+    background: red;
+    width: 0%;
+    height: 100%;
+    top: 0;  
+}
+header .master_play .vol .vol_dot{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: red;
+    border-radius: 50%;
+    left: 0%;
+    top: -1px;
+    transition: 1s linear;
+}
+header .master_play .vol .vol_dot::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 1px solid red;
+    border-radius: 50%;
+    left: -6px;
+    top: -6px;
+    box-shadow: inset 0px 0px red;
+}
+
+

@@ -1,0 +1,48 @@
+<%- include('../includes/head.ejs') %>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/playlist.css">
+</head>
+<body>
+    <header>
+    <%- include('../includes/menu_side.ejs') %>
+        <div class="song_side">
+            <%- include('../includes/nav.ejs') %>
+            
+
+            <div class="head-section">
+                <img src="<%= locals.albumSongs.images[0].url %>" alt="image">
+                <p class="title"><%= locals.albumSongs.name %></p>
+            </div>
+            <!-- Album songs -->
+            <% 
+            const {
+                tracks: {
+                    items: albumItems
+                }  
+            } = locals.albumSongs %>
+            <% if (albumItems.length > 0) { %>
+            <div class="liked_songs">
+                <ul>
+                    <% albumItems.forEach(({name, artists}) => { %>
+                        <li>
+                            <img src="<%= locals.albumSongs.images[0].url %>" alt="song_image">
+                            <i class="bi bi-play-circle-fill"></i>
+                            <% const text = artists.map(({name})=> name).join(', '); %>
+                            <h5><%= name %> <br>
+                                <div class="artist_name"><%= text %></div>
+                            </h5>    
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+            <% } %>
+            </div>
+        
+    <%- include('../includes/master_side.ejs') %>
+        
+    </header>
+</body>
+</html>           
+
+

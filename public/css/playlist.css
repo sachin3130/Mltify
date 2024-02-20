@@ -1,0 +1,152 @@
+header .song_side {
+    z-index: 2;
+}
+header .song_side::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(to bottom, #2C1F55, #4F399A);
+    background-size: cover;
+    background-position: 0% 20%;
+    z-index: -1;
+}
+header .song_side nav{
+    width: 90%;
+    height: 10%;
+    margin: auto;
+    /* border: 1px solid #fff; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header .song_side nav ul{
+    display: flex;
+}
+header .song_side nav ul li{
+    position: relative;
+    list-style-type: none;
+    font-size: 15px;
+    color: #B2B2B2;
+    margin-right: 25px;
+    cursor: pointer;
+    transition: .3s linear;
+}
+header .song_side nav ul li:hover{
+    color: white;
+}
+header .song_side nav ul li:nth-child(1){
+    color: white;
+}
+header .song_side nav ul li span{
+    position: absolute;
+    width: 100%;
+    height: 2.5px;
+    background: red;
+    bottom: 1px;
+    left: 0;
+    border-radius: 20px;
+}
+header .song_side nav .user{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: auto;
+    cursor: pointer;
+}
+header .song_side nav .user img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* box-shadow: 2px 2px 8px red; */
+}
+
+
+header .song_side .head-section{
+    width: 100%;
+    height: 30%;
+    /* margin: auto; */
+    display: flex;
+    align-items: center;
+    /* flex-direction: column; */
+    /* border: 1px solid white */
+    /* border: 1px solid white; */
+    /* padding-top: 20px; */
+}
+header .song_side .head-section img{
+    width: 180px;
+    height: 180px;
+    margin-left: 20px;
+    border-radius: 5%;
+}
+header .song_side .head-section .title{
+    color: white;
+    font-size: 80px;
+    font-weight: 1000;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 20px;
+    line-height: 1.5;
+    max-width: calc(100% - 180px);
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+    white-space: nowrap;
+}
+
+header .song_side .liked_songs {
+    width: 98%;
+    margin-left: 1%;
+    height: auto;
+    margin-top: 40px;
+    /* border: 1px solid white; */
+}
+header .song_side .liked_songs li{
+    height: 80px;
+
+    color: white;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+header .song_side .liked_songs li:hover{
+    background: #232323;
+    cursor: pointer;
+}
+header .song_side .liked_songs li img{
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    border-radius: 10%;
+}
+header .song_side .liked_songs li .bi{
+    position: absolute;
+    font-size: 40px;
+    margin-left: 20px;
+    color: #18D860;
+    /* border: 1px solid white; */
+    opacity: 0;
+}
+header .song_side .liked_songs li:hover .bi {
+    opacity: 1;
+}
+header .song_side .liked_songs li h5{
+    margin-left: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+}
+header .song_side .liked_songs li h5 .artist_name{
+    font-size: 15px;
+    color: #B2B2B2;
+    font-weight: 200;
+    /* margin-left: 10px; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+
+
+

@@ -1,0 +1,222 @@
+<%- include('../includes/head.ejs') %>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <style>
+        header .song_side::before{
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #121212),
+                url("images\liked_song.jpeg") no-repeat;
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+    <%- include('../includes/menu_side.ejs') %>
+        <div class="song_side">
+        <%- include('../includes/nav.ejs') %>
+            
+            <!-- Recently played tracks -->
+            <% if (locals.recentlyPlayedTracks.length > 0) { %>
+                <div class="new-section">
+                    <div class="h4">
+                        <h4>Recently played</h4>
+                        <div class="btn_s">
+                            <i id="left_scroll" class="bi bi-arrow-left-short"></i>
+                            <i id="right_scroll" class="bi bi-arrow-right-short"></i>
+                        </div>
+                    </div>
+                    <div class="item-list">
+                            <% locals.recentlyPlayedTracks.forEach(({album: {images, name}, artists, id}) => { %>
+                                <li class="item"  id="track_detail" onclick="trackSong('<%= id %>')">
+                                    <div class="img_play">
+                                        <img src="<%= images[0].url %>" alt="song_image">
+                                        <i class="bi bi-play-circle-fill" id="7"></i>
+                                    </div>
+                                    <h5><%= name %> <br>
+                                        <!-- <div class="subtitle">Artist Name</div>  -->
+                                        <% const text = artists.map(({name})=> name).join(', '); %>
+                                        <div class="subtitle">
+                                            <%= text %>
+                                        </div>
+                                    </h5>
+                                </li>
+                            <% }); %>
+                        
+                    </div>
+                    
+                </div>
+                <% } %>
+
+            <!-- Recommended Albums -->
+            <% if (locals.recommendedAlbums.length > 0) { %>
+                <div class="new-section">
+                    <div class="h4">
+                        <h4>Recommended Albums</h4>
+                        <div class="btn_s">
+                            <i id="left_scroll" class="bi bi-arrow-left-short"></i>
+                            <i id="right_scroll" class="bi bi-arrow-right-short"></i>
+                        </div>
+                    </div>
+                    <div class="item-list">
+                            <% locals.recommendedAlbums.forEach(({album: {artists, id, images, name }}) => { %>
+                                <li class="item" id="album_detail" onclick="albumSongs('<%= id %>')">
+                                    <div class="img_play">
+                                        <img src="<%= images[0].url %>" alt="song_image">
+                                        <i class="bi bi-play-circle-fill" id="7"></i>
+                                    </div>
+                                    <h5><%= name %> <br>
+                                        <!-- <div class="subtitle">Artist Name</div>  -->
+                                        <% const text = artists.map(({name})=> name).join(', '); %>
+                                        <div class="subtitle">
+                                            <%= text %>
+                                        </div>
+                                    </h5>
+                                </li>
+                            <% }); %>
+                        
+                    </div>
+                    
+                </div>
+                <% } %>
+
+                
+                
+                <!-- Recommended artists -->
+                <% if (locals.recommendedArtists.artists.length > 0) { %>
+                    <div class="new-section">
+                        <div class="h4">
+                            <h4>Artists For You</h4>
+                            <div class="btn_s">
+                                <i id="left_scroll" class="bi bi-arrow-left-short"></i>
+                                <i id="right_scroll" class="bi bi-arrow-right-short"></i>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                                <% locals.recommendedArtists.artists.forEach(({id, images, name, type }) => { %>
+                                    <li class="item" onclick="artistTopTracks('<%= id %>')">
+                                        <div class="img_play">
+                                            <img src="<%= images[0].url %>" alt="song_image">
+                                            <i class="bi bi-play-circle-fill" id="7"></i>
+                                        </div>
+                                        <h5><%= name %> <br>
+                                        
+                                            <div class="subtitle">
+                                                <%= type %>
+                                            </div>
+                                        </h5>
+                                    </li>
+                                <% }); %>
+                            
+                        </div>
+                        
+                    </div>
+                    <% } %>
+
+                    <!-- New Release Albums -->
+                    <% 
+                    const {
+                        items: newReleaseItems,
+                        next: newReleaseNext
+                    } = locals.newRelease %>
+                <% if (newReleaseItems.length > 0) { %>
+                    <div class="new-section">
+                        <div class="h4">
+                            <h4>New Release Albums</h4>
+                            <div class="btn_s">
+                                <i id="left_scroll" class="bi bi-arrow-left-short"></i>
+                                <i id="right_scroll" class="bi bi-arrow-right-short"></i>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                                <% newReleaseItems.forEach(({id, images, name, artists }) => { %>
+                                    <li class="item" onclick="albumSongs('<%= id %>')">
+                                        <div class="img_play">
+                                            <img src="<%= images[0].url %>" alt="song_image">
+                                            <i class="bi bi-play-circle-fill" id="7"></i>
+                                        </div>
+                                        <h5><%= name %> <br>
+                                            <% const text = artists.map(({name})=> name).join(', '); %>
+                                            <div class="subtitle">
+                                                <%= text %>
+                                            </div>
+                                        </h5>
+                                    </li>
+                                <% }); %>
+                            
+                        </div>
+                        
+                    </div>
+                    <% } %>
+
+                    <!-- Featured Playlist -->
+                    <% 
+                    const {
+                        message: featuredPlaylistTitle,
+                        playlists: {
+                            items: featuredPlaylistItems,
+                            next: featuredPlaylistNext        
+                        }
+                    } = locals.featuredPlaylist %>
+                <% if (featuredPlaylistItems.length > 0) { %>
+                    <div class="new-section">
+                        <div class="h4">
+                            <h4><%= featuredPlaylistTitle %></h4>
+                            <div class="btn_s">
+                                <i id="left_scroll" class="bi bi-arrow-left-short"></i>
+                                <i id="right_scroll" class="bi bi-arrow-right-short"></i>
+                            </div>
+                        </div>
+                        <div class="item-list">
+                                <% featuredPlaylistItems.forEach(({id, images, name, description }) => { %>
+                                    <li class="item" onclick="playlistSongs('<%= id %>','<%= images[0].url %>','<%= name %>')">
+                                        <div class="img_play">
+                                            <img src="<%= images[0].url %>" alt="song_image">
+                                            <i class="bi bi-play-circle-fill" id="7"></i>
+                                        </div>
+                                        <h5><%= name %> <br>
+                                            <div class="subtitle">
+                                                <%= description %>
+                                            </div>
+                                        </h5>
+                                    </li>
+                                <% }); %>
+                            
+                        </div>
+                        
+                    </div>
+                    <% } %>
+
+            </div>
+    <%- include('../includes/master_side.ejs') %>
+        
+        
+    </header>
+    <script>
+        function albumSongs(id) {
+            // console.log(id);
+           window.location.href = `/album/${id}`;    
+        }
+        function artistTopTracks(id) {
+            window.location.href = `artist/${id}`;
+        }
+        function playlistSongs(id,imageUrl,name) {
+            // console.log(id);
+           window.location.href = `/playlist/${id}?name=${name}&imageUrl=${imageUrl}`;
+        }
+        function trackSong(id) {
+            // console.log(id);
+           window.location.href = `/track/${id}`;
+        }
+        // document.getElementById('album_detail').addEventListener('click', function() {
+        //     window.location.href = '/';
+        //   });
+        // document.getElementById('track_detail').addEventListener('click', function() {
+        //     event.stopPropagation();
+        //     window.location.href = '/basic.html';
+        //   });
+    </script>
+</body>
+</html>           
+
+

@@ -1,0 +1,6 @@
+CLIENT_ID=a3545b01496547ab9501972955ef8b7b
+CLIENT_SECRET=ad5e441f428b4d89ab9521f62aade247
+REDIRECT_URI=http://localhost:8000/auth/callback
+SCOPE='user-read-playback-state user-modify-playback-state user-read-currently-playing streaming user-follow-read user-top-read user-read-recently-played user-library-read user-read-email user-read-private'
+
+MUSIXMATCH_API_KEY=cf16a5bcb5ec48512394a185599c79b6

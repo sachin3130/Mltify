@@ -1,0 +1,88 @@
+<%- include('../includes/head.ejs') %>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/track.css">
+</head>
+<body>
+    <header>
+    <%- include('../includes/menu_side.ejs') %>
+        <div class="song_side">
+            <%- include('../includes/nav.ejs') %>
+            
+
+            <div class="head-section">
+                <img src="<%= locals.trackDetails.album.images[0].url %>" alt="image">
+                <p class="title"><%= locals.trackDetails.name %></p>
+            </div>
+            <!-- Track Details -->
+            <% if (locals.trackDetails) { %>
+            <div class="track_deatils">
+                <ul>
+                    <li>
+                        <img src="<%= locals.trackDetails.album.images[0].url %>" alt="song_image">
+                        <i class="bi bi-play-circle-fill"></i>
+                        <% const text = locals.trackDetails.artists.map(({name})=> name).join(', '); %>
+                        <h5><%= locals.trackDetails.name %> <br>
+                            <div class="artist_name"><%= text %></div>
+                        </h5>    
+                    </li>
+                </ul>
+            </div>
+            <% } %>
+
+            <!-- Track lyrics -->
+            <% if(locals.trackLyrics.lyrics_body) { %>
+            <div class="lyrics">
+                <div class="h4"><h4>Lyrics</h4></div>
+                <pre><%= locals.trackLyrics.lyrics_body %></pre>
+            </div>
+            <% } %>
+            <!-- First artist top tracks -->
+            <% 
+            const {
+                tracks: topTracks
+            } = locals.artistTopTracks %>
+            <% if (topTracks.length > 0) { %>
+                <div class="new-section">
+                    <div class="h4">
+                        <h4>More From <%= locals.firstArtistName %></h4>
+                        <div class="btn_s">
+                            <i id="left_scroll" class="bi bi-arrow-left-short"></i>
+                            <i id="right_scroll" class="bi bi-arrow-right-short"></i>
+                        </div>
+                    </div>
+                    <div class="item-list">
+                        <% topTracks.forEach(({album: {images}, id, name, artists}) => { %>
+                                <li class="item" onclick="trackSong('<%= id %>')">
+                                    <div class="img_play">
+                                        <img src="<%= images[0].url %>" alt="song_image">
+                                        <i class="bi bi-play-circle-fill"></i>
+                                    </div>
+                                    <h5><%= name %> <br>
+                                        <% const text = artists.map(({name})=> name).join(', '); %>
+                                        <div class="subtitle">
+                                            <%= text %>
+                                        </div>
+                                    </h5>
+                                </li>
+                            <% }); %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+
+            
+        
+    <%- include('../includes/master_side.ejs') %>
+        
+    </header>
+    <script>
+        function trackSong(id) {
+            // console.log(id);
+           window.location.href = `/track/${id}`;
+        }
+    </script>
+</body>
+</html>           
+
+

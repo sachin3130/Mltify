@@ -1,0 +1,158 @@
+<%- include('../includes/head.ejs') %>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/search_result.css">
+</head>
+<body>
+    <header>
+    <%- include('../includes/menu_side.ejs') %>
+        <div class="song_side">
+            <nav>
+                <div class="search">
+                    <i class="bi bi-search"></i>
+                    <form method="post" action="/search">
+                        <input type="text" name="query" placeholder="What do you want to listen?">
+                        <!-- <button type="submit"><i class="bi bi-search"></i></button> -->
+                    </form>
+                </div>
+                <div class="btn">
+                    <a href="/search/predict_mood" class="button" title="Search by mood"><img id="mood" src="images/thinking.png" alt="Button Image"></a>
+                </div>
+                <div class="user">
+                    <img src="<%= locals.currentProfile.images[0].url %>" alt="user" title="<%= locals.currentProfile.display_name %>">
+                </div>
+            </nav>
+            <!-- Tracks -->
+            <% const { tracks: { items: searchTrackItems } } = locals.searchAll; %>
+            <% if (searchTrackItems.length > 0) { %>
+                <div class="new-section">
+                    <div class="h4">
+                        <h4>Tracks</h4>
+                        <div class="btn_s">
+                            <i class="bi bi-arrow-left-short" onclick="scrollItems('left','section1')"></i>
+                            <i class="bi bi-arrow-right-short" onclick="scrollItems('right','section1')"></i>
+                        </div>
+                    </div>
+                    <div class="item-list" id="section1">
+                        <% searchTrackItems.forEach(({ album: { images,name }, artists, id}) => { %>
+                            <li class="item" onclick="trackSong('<%= id %>')">
+                                <div class="img_play">
+                                    <img src="<%= images[0].url %>" alt="song_image">
+                                    <i class="bi bi-play-circle-fill" id="7"></i>
+                                </div>
+                                <h5><%= name %> <br>
+                                    <% const text = artists.map(({name})=> name).join(', '); %>
+                                    <div class="subtitle">
+                                        <%= text %>
+                                    </div>
+                                </h5>
+                            </li>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+
+            <!-- Playlists -->
+            <% const { playlists: { items: searchPlaylistItems } } = locals.searchAll; %>
+            <% if (searchPlaylistItems.length > 0) { %>
+                <div class="new-section">
+                    <div class="h4">
+                        <h4>Playlists</h4>
+                        <div class="btn_s">
+                            <i class="bi bi-arrow-left-short" onclick="scrollItems('left','section2')"></i>
+                            <i class="bi bi-arrow-right-short" onclick="scrollItems('right','section2')"></i>
+                        </div>
+                    </div>
+                    <div class="item-list" id="section2">
+                        <% searchPlaylistItems.forEach(({id, images, name, description}) => { %>
+                            <!-- <% console.log(`/playlist/${id}?name=${name}&imageUrl=${images[0].url}`) %> -->
+                            <li class="item" onclick="playlistSongs('<%= id %>','<%= images[0].url %>','<%= name %>')">
+                                <div class="img_play">
+                                    <img src="<%= images[0].url %>" alt="song_image">
+                                    <i class="bi bi-play-circle-fill" id="7"></i>
+                                </div>
+                                <h5><%= name %> <br>
+                                    <div class="subtitle">
+                                        <%= description %>
+                                    </div>
+                                </h5>
+                            </li>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+
+            <!-- Albums -->
+            <% const { albums: { items: searchAlbumItems } } = locals.searchAll; %>
+            <% if (searchAlbumItems.length > 0) { %>
+                <div class="new-section">
+                    <div class="h4">
+                        <h4>Albums</h4>
+                        <div class="btn_s">
+                            <i class="bi bi-arrow-left-short" onclick="scrollItems('left','section3')"></i>
+                            <i class="bi bi-arrow-right-short" onclick="scrollItems('right','section3')"></i>
+                        </div>
+                    </div>
+                    <div class="item-list" id="section3">
+                        <% searchAlbumItems.forEach(({id, images, name, artists}) => { %>
+                            <li class="item" onclick="albumSongs('<%= id %>')">
+                                <div class="img_play">
+                                    <img src="<%= images[0].url %>" alt="song_image">
+                                    <i class="bi bi-play-circle-fill" id="7"></i>
+                                </div>
+                                <h5><%= name %> <br>
+                                    <% const text = artists.map(({name})=> name).join(', '); %>
+                                    <div class="subtitle">
+                                        <%= text %>
+                                    </div>
+                                </h5>
+                            </li>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+            
+            
+            </div>
+        
+    <%- include('../includes/master_side.ejs') %>
+        
+    </header>
+    <script>
+        const imageUrls = ['images/thinking.png','images/smile.png','images/sarcastic.png','images/laughing.png'];
+        let currentIndex = 0;
+        // const changingImage = document.getElementById('mood');
+        function changeImage() {
+
+            document.getElementById('mood').src = imageUrls[currentIndex];
+          currentIndex = (currentIndex + 1) % imageUrls.length;
+        }
+        setInterval(changeImage, 2000);
+        function scrollItems(direction, sectionId) {
+            const itemList = document.getElementById(sectionId);
+            const scrollAmount = 200; // Adjust this value based on your needs
+            const currentScroll = itemList.scrollLeft;
+
+            if (direction === 'left') {
+                itemList.scrollLeft -= scrollAmount;
+            } else if (direction === 'right') {
+                itemList.scrollLeft += scrollAmount;
+            }
+        }
+        function albumSongs(id) {
+            // console.log(id);
+           window.location.href = `/album/${id}`;    
+        }
+        function playlistSongs(id,imageUrl,name) {
+            // console.log(id);
+           window.location.href = `/playlist/${id}?name=${name}&imageUrl=${imageUrl}`;
+        }
+        function trackSong(id) {
+            // console.log(id);
+           window.location.href = `/track/${id}`;
+        }
+      </script>
+</body>
+</html>           
+
+

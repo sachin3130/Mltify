@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood</title>
+    <link rel="stylesheet" href="/css/predict_mood.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+<body>
+    <video></video>
+    <button disabled><i class="bi bi-camera-fill"></i></i></button>
+    <a href="/" id="mood_link">Mood</a>
+    <!-- <img src="img/champagne.jpeg" alt="image" id="image"> -->
+</body>
+<script>
+    // get webcam
+let video = document.querySelector('video')
+navigator.mediaDevices.getUserMedia({video:true})
+.then((stream) => {
+    video.srcObject = stream
+    return video.play()
+})
+.then(() => {
+    // button reference
+    let button = document.querySelector('button')
+    button.disabled = false;
+    
+    // onclick for button
+    button.onclick = () => {
+        // take picture
+        takeSnapshot()
+        .then((capturedImageData) => {
+            // document.getElementById('image').src=capturedImageData;
+            document.getElementById('mood_link').innerText = 'Hello';
+            document.getElementById('mood_link').href = '/basic.html';
+        })
+    }
+})
+
+// snapshot method
+function takeSnapshot() {
+    // canvas element
+    let canvas = document.createElement('canvas')
+    let ctx = canvas.getContext('2d')
+
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+
+    // draw the video on the canvas
+
+    ctx.drawImage(video,0,0)
+
+    let capturedImageData = canvas.toDataURL('image/jpeg');
+    // convert canvas to blob
+    return Promise.resolve(capturedImageData);
+}
+
+</script>
+</html>

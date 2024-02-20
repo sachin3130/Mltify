@@ -1,0 +1,73 @@
+<%- include('../includes/head.ejs') %>
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/search.css">
+</head>
+<body>
+    <header>
+    <%- include('../includes/menu_side.ejs') %>
+        <div class="song_side">
+            <nav>
+                <div class="search">
+                    <i class="bi bi-search"></i>
+                    <form method="post" action="/search">
+                        <input type="text" name="query" placeholder="What do you want to listen?">
+                        <!-- <button type="submit"><i class="bi bi-search"></i></button> -->
+                    </form>
+                </div>
+                <div class="btn">
+                    <a href="/search/predict_mood" class="button" title="Search by mood"><img id="mood" src="images/thinking.png" alt="Button Image"></a>
+                </div>
+                <div class="user">
+                    <img src="<%= locals.currentProfile.images[0].url %>" alt="user" title="<%= locals.currentProfile.display_name %>">
+                </div>
+            </nav>
+
+            <!-- Browse categories -->
+            <% const { categories: { items: browseCategoryItems } } = locals.severalBrowseCategories; %>
+            <% if (browseCategoryItems.length > 0) { %>
+                <div class="new-section">
+                    <div class="h4">
+                        <h4>Browse All</h4>
+                        <div class="btn_s">
+                            <i class="bi bi-arrow-left-short" onclick="scrollItems('left','section1')"></i>
+                            <i class="bi bi-arrow-right-short" onclick="scrollItems('right','section1')"></i>
+                        </div>
+                    </div>
+                    <div class="item-list" id="section1">
+                        <% browseCategoryItems.forEach(({ icons, name}) => { %>
+                            <li class="item">
+                                <div class="img_play">
+                                    <img src="<%= icons[0].url %>" alt="song_image">
+                                    <!-- <i class="bi bi-play-circle-fill" id="7"></i> -->
+                                </div>
+                                <h5><%= name %> <br>
+                                    <!-- <div class="subtitle">
+                                        Arijit Singh
+                                    </div> -->
+                                </h5>
+                            </li>
+                        <% }); %>
+                    </div>
+                </div>
+            <% } %>
+            </div>
+        
+    <%- include('../includes/master_side.ejs') %>
+        
+    </header>
+    <script>
+        const imageUrls = ['images/thinking.png','images/smile.png','images/sarcastic.png','images/laughing.png'];
+        let currentIndex = 0;
+        // const changingImage = document.getElementById('mood');
+        function changeImage() {
+
+            document.getElementById('mood').src = imageUrls[currentIndex];
+          currentIndex = (currentIndex + 1) % imageUrls.length;
+        }
+        setInterval(changeImage, 2000);
+      </script>
+</body>
+</html>           
+
+

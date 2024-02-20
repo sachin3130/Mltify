@@ -1,0 +1,38 @@
+<div class="menu_side">
+    <h1><img src="images\spotify-logo.png" alt="Logo">Mspotify</h1>
+    <div class="nav">
+        <!-- <h4 class="active"><i class="bi bi-house-fill"></i>Home</h4>
+        <h4><i class="bi bi-search"></i>Search</h4>
+        <h4><i class="bi bi-heart-fill"></i>Favourite</h4> -->
+
+        <ul>
+            <li class="<%= path === '/home' ? 'active' : '' %>">
+                <i class="bi bi-house-fill"></i><a href="/">Home</a>
+            </li>
+            <li class="<%= path === '/search' ? 'active' : '' %>">
+                <i class="bi bi-search"></i><a href="/search">Search</a>
+            </li>
+            <li class="<%= path === '/liked_songs' ? 'active' : '' %>">
+                <i class="bi bi-heart-fill"></i><a href="/liked_songs">Liked Songs</a>
+            </li>
+        </ul>
+    </div>
+    <% const {
+        items: playlistItems,
+        next: playlistNext
+    } = locals.currentUserPlaylists %>
+    <% if(playlistItems.length > 0) { %>
+        <div class="playlists">
+            <h1><i class="bi bi-file-music-fill"></i>Playlists</h1>
+            <ul>
+                <% playlistItems.forEach(({id, images, name}) => { %>
+                    <li class="playlist">
+                        <img src="<%= images[0].url %>" alt="playlist_image">
+                        <a href="/playlist/<%= id %>?name=<%= name %>&imageUrl=<%= images[0].url %>"><%= name %></a>
+
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    <% } %>
+</div>

@@ -1,0 +1,244 @@
+header .song_side {
+    z-index: 2;
+}
+header .song_side::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(to bottom, #523A9D, #1B1530);
+    background-size: cover;
+    background-position: 0% 20%;
+    z-index: -1;
+}
+header .song_side nav{
+    width: 90%;
+    height: 10%;
+    margin: auto;
+    /* border: 1px solid #fff; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .song_side nav .user{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: auto;
+    cursor: pointer;
+}
+header .song_side nav .user img{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* box-shadow: 2px 2px 8px red; */
+}
+
+
+header .song_side .head-section{
+    width: 100%;
+    height: 30%;
+    /* margin: auto; */
+    display: flex;
+    align-items: center;
+    /* flex-direction: column; */
+    /* border: 1px solid white */
+    /* border: 1px solid white; */
+    /* padding-top: 20px; */
+}
+header .song_side .head-section img{
+    width: 180px;
+    height: 180px;
+    margin-left: 20px;
+    border-radius: 5%;
+
+}
+header .song_side .head-section .title{
+    color: white;
+    font-size: 80px;
+    font-weight: 1000;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 20px;
+    line-height: 1.5;
+    max-width: calc(100% - 180px);
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+    white-space: nowrap;
+}
+
+header .song_side .track_deatils {
+    width: 98%;
+    margin-left: 1%;
+    height: auto;
+    margin-top: 40px;
+    /* border: 1px solid white; */
+}
+header .song_side .track_deatils li{
+    height: 80px;
+
+    color: white;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+header .song_side .track_deatils li:hover{
+    background: #232323;
+    cursor: pointer;
+}
+header .song_side .track_deatils li img{
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    border-radius: 10%;
+}
+header .song_side .track_deatils li .bi{
+    position: absolute;
+    font-size: 40px;
+    margin-left: 20px;
+    color: #18D860;
+    /* border: 1px solid white; */
+    opacity: 0;
+}
+header .song_side .track_deatils li:hover .bi {
+    opacity: 1;
+}
+header .song_side .track_deatils li h5{
+    margin-left: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+}
+header .song_side .track_deatils li h5 .artist_name{
+    font-size: 15px;
+    color: #B2B2B2;
+    font-weight: 200;
+    /* margin-left: 10px; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header .song_side .lyrics{
+    width: 98%;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    /* border: 1px solid white; */
+} 
+
+header .song_side .lyrics .h4 h4{
+    color: white;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+header .song_side .lyrics pre{
+    margin-top: 20px;
+    margin-left: 20px;
+    color: white;
+}
+
+header .song_side .new-section{
+    width: 98%;
+    height: auto;
+    /* border: 1px solid white; */
+    margin: auto;
+    margin-top: 20px;
+}
+header .song_side .new-section .h4{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+header .song_side .new-section .h4 h4{
+    color: white;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+header .song_side .new-section .h4 .bi{
+    color: #B2B2B2;
+    cursor: pointer;
+    transition: .3s linear;
+}
+header .song_side .new-section .h4 .bi:hover{
+    color: white;
+}
+header .song_side .new-section .item-list{
+    width: 100%;
+    height: 250px;
+    margin-top: 15px;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+header .song_side .new-section .item-list::-webkit-scrollbar{
+    display: none;
+}
+header .song_side .new-section .item-list li{
+    min-width: 180px;
+    height: 250px;
+    list-style-type: none;
+    margin-right: 20px;
+    border-radius: 10px;
+    background: #171717;
+    transition: .3s linear;
+}
+header .song_side .new-section .item-list li:hover{
+    background: #232323;
+}
+header .song_side .new-section .item-list li .img_play{
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin-left: 10px;
+    margin-top: 10px;
+    display: flex;
+    /* align-items: center; */
+    justify-content: flex-end;
+}
+header .song_side .new-section .item-list li .img_play img{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+header .song_side .new-section .item-list li .img_play .bi{
+    position: absolute;
+    font-size: 50px;
+    cursor: pointer;
+    color: #18D860;
+    margin-right: 10px;
+    align-self: flex-end;
+    transition: .3s linear;
+    opacity: 0;
+}
+header .song_side .new-section .item-list li:hover .bi{
+    opacity: 1;
+}
+header .song_side .new-section .item-list li h5{
+    padding: 5px 0px 0px 5px;
+    line-height: 1.5;
+    font-size: 18px;
+    margin: 10px 0px 0px 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+    white-space: nowrap; 
+}
+header .song_side .new-section .item-list li h5 .subtitle{
+    font-size: 10px;
+    margin-top: 10px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #B2B2B2;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+    white-space: nowrap; 
+}
+
+
